@@ -1,135 +1,92 @@
 package com.xxscloud.core.http
 
 
-import com.xxscloud.core.data.HttpResponseEntity
-import java.util.*
+import com.xxscloud.core.data.*
 
 
-/**
- * HttpUtils 接口
- */
-interface HttpUtils {
+interface HttpUtils : HttpInterceptor {
 
-    /**
-     * 发送一个Get 请求 .
-     *
-     * @param url Url地址
-     * @return 处理结果
-     */
     fun get(url: String): HttpResponseEntity
 
+    fun get(url: String, interval: Long?): HttpResponseEntity
 
-    /**
-     * 发送一个Get 请求，直到成功为止 .
-     *
-     * @param url Url地址
-     * @param interval 间隔
-     * @return 处理结果
-     */
-    fun get(url: String, interval: Long): HttpResponseEntity
+    fun get(url: String, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
 
-    /**
-     * 发送一个Get 请求 .
-     *
-     * @param url     Url地址
-     * @param headers 请求头部
-     * @return 处理结果
-     */
-    fun get(url: String, headers: HashMap<String, String>): HttpResponseEntity
+    fun get(url: String, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
 
-    /**
-     * 发送一个POST 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @return 处理结果
-     */
-    fun post(url: String, parameters: HashMap<String, Any>): HttpResponseEntity
+    fun post(url: String, httpFormEntity: HttpFormEntity?): HttpResponseEntity
 
-    /**
-     * 发送一个POST 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @param headers    请求头部
-     * @return 处理结果
-     */
-    fun post(url: String, parameters: HashMap<String, Any>, headers: HashMap<String, String>): HttpResponseEntity
+    fun post(url: String, httpFormEntity: HttpFormEntity?, interval: Long?): HttpResponseEntity
 
-    /**
-     * 发送一个POST 请求.
-     *
-     * @param url     url 地址
-     * @param headers 请求头部
-     * @param body    请求正文
-     * @return 处理结果
-     */
-    fun post(url: String, headers: HashMap<String, String>, body: ByteArray): HttpResponseEntity
+    fun post(url: String, httpFormEntity: HttpFormEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
 
-    /**
-     * 发送一个POST 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @return 处理结果
-     */
-    fun post(url: String, parameters: String, headers: HashMap<String, String>): HttpResponseEntity
+    fun post(url: String, httpFormEntity: HttpFormEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
 
-    /**
-     * 发送一个POST 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @return 处理结果
-     */
-    fun post(url: String, parameters: String): HttpResponseEntity
+    fun post(url: String, httpJsonEntity: HttpJsonEntity?): HttpResponseEntity
 
-    /**
-     * 发送一个Put 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @return 处理结果
-     */
-    fun put(url: String, parameters: HashMap<String, Any>): HttpResponseEntity
+    fun post(url: String, httpJsonEntity: HttpJsonEntity?, interval: Long?): HttpResponseEntity
 
-    /**
-     * 发送一个Put 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @param headers    请求正文
-     * @return 响应实体
-     */
-    fun put(url: String, parameters: HashMap<String, Any>, headers: HashMap<String, String>): HttpResponseEntity
+    fun post(url: String, httpJsonEntity: HttpJsonEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
 
-    /**
-     * 发送一个Put 请求.
-     *
-     * @param url        url 地址
-     * @param headers 请求头部
-     * @param body       请求body
-     * @return 响应实体
-     */
-    fun put(url: String, headers: HashMap<String, String>, body: ByteArray): HttpResponseEntity
+    fun post(url: String, httpJsonEntity: HttpJsonEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
 
-    /**
-     * 发送一个DELETE 请求.
-     *
-     * @param url        url 地址
-     * @param parameters 请求参数
-     * @return 响应实体
-     */
-    fun delete(url: String, parameters: HashMap<String, Any>): HttpResponseEntity
+    fun post(url: String, httpStreamEntity: HttpStreamEntity?): HttpResponseEntity
 
-    /**
-     * 发送一个DELETE 请求.
-     *
-     * @param url        请求地址
-     * @param parameters 请求参数
-     * @param headers    请求头部
-     * @return 响应实体
-     */
-    fun delete(url: String, parameters: HashMap<String, Any>, headers: HashMap<String, String>): HttpResponseEntity
+    fun post(url: String, httpStreamEntity: HttpStreamEntity?, interval: Long?): HttpResponseEntity
+
+    fun post(url: String, httpStreamEntity: HttpStreamEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun post(url: String, httpStreamEntity: HttpStreamEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun put(url: String, httpFormEntity: HttpFormEntity?): HttpResponseEntity
+
+    fun put(url: String, httpFormEntity: HttpFormEntity?, interval: Long?): HttpResponseEntity
+
+    fun put(url: String, httpFormEntity: HttpFormEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun put(url: String, httpFormEntity: HttpFormEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun put(url: String, httpJsonEntity: HttpJsonEntity?): HttpResponseEntity
+
+    fun put(url: String, httpJsonEntity: HttpJsonEntity?, interval: Long?): HttpResponseEntity
+
+    fun put(url: String, httpJsonEntity: HttpJsonEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun put(url: String, httpJsonEntity: HttpJsonEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun put(url: String, httpStreamEntity: HttpStreamEntity?): HttpResponseEntity
+
+    fun put(url: String, httpStreamEntity: HttpStreamEntity?, interval: Long?): HttpResponseEntity
+
+    fun put(url: String, httpStreamEntity: HttpStreamEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun put(url: String, httpStreamEntity: HttpStreamEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun delete(url: String, httpFormEntity: HttpFormEntity?): HttpResponseEntity
+
+    fun delete(url: String, httpFormEntity: HttpFormEntity?, interval: Long?): HttpResponseEntity
+
+    fun delete(url: String, httpFormEntity: HttpFormEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun delete(url: String, httpFormEntity: HttpFormEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun delete(url: String, httpJsonEntity: HttpJsonEntity?): HttpResponseEntity
+
+    fun delete(url: String, httpJsonEntity: HttpJsonEntity?, interval: Long?): HttpResponseEntity
+
+    fun delete(url: String, httpJsonEntity: HttpJsonEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun delete(url: String, httpJsonEntity: HttpJsonEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun delete(url: String, httpStreamEntity: HttpStreamEntity?): HttpResponseEntity
+
+    fun delete(url: String, httpStreamEntity: HttpStreamEntity?, interval: Long?): HttpResponseEntity
+
+    fun delete(url: String, httpStreamEntity: HttpStreamEntity?, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
+    fun delete(url: String, httpStreamEntity: HttpStreamEntity?, httpHeaderEntity: HttpHeaderEntity?, interval: Long?): HttpResponseEntity
+
+    fun loadWebPage(url: String, httpHeaderEntity: HttpHeaderEntity?): HttpResponseEntity
+
 }
 

@@ -19,7 +19,7 @@ class HttpRequestEntity : Serializable {
     /**
      * 请求头部
      */
-    var headers: HashMap<String, String>? = null
+    var headers: HttpHeaderEntity? = null
 
 
     /**
@@ -30,7 +30,7 @@ class HttpRequestEntity : Serializable {
     /**
      * 请求参数.
      */
-    var parameters: HashMap<String, Any>? = null
+    var parameters: HttpFormEntity? = null
 
     /**
      * 请求字符串.

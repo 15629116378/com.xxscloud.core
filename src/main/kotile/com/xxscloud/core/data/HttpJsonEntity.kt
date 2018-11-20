@@ -11,7 +11,7 @@ class HttpJsonEntity {
 
     constructor(obj: Any) : this(JsonUtils.stringify(obj))
 
-    fun getDat(): String {
+    fun getData(): String {
         return json
     }
 }

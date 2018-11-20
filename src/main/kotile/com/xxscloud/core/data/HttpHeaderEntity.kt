@@ -1,6 +1,11 @@
 package com.xxscloud.core.data
 
-data class HttpHeaderEntity(
-        var key: String,
-        var value: String
-)
+class HttpHeaderEntity : HashMap<String, String?> {
+    constructor(headers: HashMap<String, *>) {
+        headers.iterator().forEach {
+            if (it.value != null) {
+                this[it.key] = it.value.toString()
+            }
+        }
+    }
+}

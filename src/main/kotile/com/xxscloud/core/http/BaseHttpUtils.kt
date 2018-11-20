@@ -9,7 +9,6 @@ import com.xxscloud.core.data.ResponseEnum
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import com.squareup.okhttp.RequestBody
-import com.xxscloud.core.JsonUtils
 import java.io.IOException
 
 
@@ -35,17 +34,18 @@ abstract class BaseHttpUtils : HttpUtils {
 
         //默认的请求头部
         var defaultHeader = true
-        httpRequestEntity.headers!!.forEach(action = {
-            if (it.key.toLowerCase() == "user-agent") {
-                defaultHeader = false
-            }
-            if (it.key != "" && it.value != "") {
-                request.addHeader(it.key.toLowerCase(), it.value)
-            }
-        })
-
+        if (httpRequestEntity.headers != null) {
+            httpRequestEntity.headers!!.forEach(action = {
+                if (it.key.toLowerCase() == "user-agent") {
+                    defaultHeader = false
+                }
+                if (it.key != "" && it.value != "") {
+                    request.addHeader(it.key.toLowerCase(), it.value)
+                }
+            })
+        }
         if (defaultHeader) {
-            request.addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36")
+            request.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36")
         }
 
 
@@ -104,7 +104,7 @@ abstract class BaseHttpUtils : HttpUtils {
 
         log.debug("发送请求: " + httpRequestEntity.url)
         val sendTime = System.currentTimeMillis()
-        var response: Response? = null
+        val response: Response?
 
         response = try {
             httpClient.newCall(request.build()).execute()

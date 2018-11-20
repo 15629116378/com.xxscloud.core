@@ -54,7 +54,7 @@ open class OSS : HttpApiUtils() {
             val headers = HashMap<String, String>()
             headers["oss-info"] = JsonUtils.stringify(newOSS)
             headers["oss-authentication"] = ""
-            val response: HttpResponseEntity = put("${this.url}/put", headers, fileData)
+            val response: HttpResponseEntity = put("${this.url}/put", HttpStreamEntity(fileData), HttpHeaderEntity(headers))
             if (response.succeed) {
                 logger.info("上传成功")
                 val result = JsonUtils.parseObject(response.bodyString!!, ResultDto::class.java)

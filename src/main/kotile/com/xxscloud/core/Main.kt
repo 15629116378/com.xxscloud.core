@@ -1,4 +1,6 @@
 import com.xxscloud.core.*
+import com.xxscloud.core.data.HttpFormEntity
+import com.xxscloud.core.data.HttpJsonEntity
 import com.xxscloud.core.oss.OSS
 import java.awt.Color
 import java.io.BufferedOutputStream
@@ -58,26 +60,30 @@ fun main(args: Array<String>) {
 
 
     //val png = FileUtils.readAll()
-    val img = ImageIO.read(File("C:\\Users\\Administrator\\Pictures\\2.PNG"))
-    val color = arrayOf(243, 25, 15)
+//    val img = ImageIO.read(File("C:\\Users\\Administrator\\Pictures\\2.PNG"))
+//    val color = arrayOf(243, 25, 15)
+//
+//    for (x in 0 until img.width) {
+//        for (y in 0 until img.height) {
+//            val pixel = img.getRGB(x, y)
+//            val rgb = arrayOf(pixel and 0xff0000 shr 16, pixel and 0xff00 shr 8, pixel and 0xff)
+//            println(JsonUtils.stringify(rgb))
+//            val s = 120
+//            if (rgb[0] > color[0] + s || rgb[0] < color[0] - s ||
+//                    rgb[1] > color[1] + s || rgb[1] < color[1] - s ||
+//                    rgb[2] > color[2] + s || rgb[2] < color[2] - s) {
+//                img.setRGB(x, y, ImageUtils.rgbToInt(Color.WHITE))
+//            } else {
+//                img.setRGB(x, y, ImageUtils.rgbToInt(Color.BLACK))
+//            }
+//        }
+//    }
+//
+//    val outputfile = File("C:\\Users\\Administrator\\Pictures\\saved.png")
+//    ImageIO.write(img, "png", outputfile)
 
-    for (x in 0 until img.width) {
-        for (y in 0 until img.height) {
-            val pixel = img.getRGB(x, y)
-            val rgb = arrayOf(pixel and 0xff0000 shr 16, pixel and 0xff00 shr 8, pixel and 0xff)
-            println(JsonUtils.stringify(rgb))
-            val s = 120
-            if (rgb[0] > color[0] + s || rgb[0] < color[0] - s ||
-                    rgb[1] > color[1] + s || rgb[1] < color[1] - s ||
-                    rgb[2] > color[2] + s || rgb[2] < color[2] - s) {
-                img.setRGB(x, y, ImageUtils.rgbToInt(Color.WHITE))
-            } else {
-                img.setRGB(x, y, ImageUtils.rgbToInt(Color.BLACK))
-            }
-        }
-    }
-
-    val outputfile = File("C:\\Users\\Administrator\\Pictures\\saved.png")
-    ImageIO.write(img, "png", outputfile)
-
+    val args = HashMap<String, String>()
+    args["data"] = "!23"
+    val response = HttpUtils().post("https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=285235965,2473603010&fm=179&app=42&f=JPEG?w=121&h=121", HttpJsonEntity(args))
+    println(response)
 }

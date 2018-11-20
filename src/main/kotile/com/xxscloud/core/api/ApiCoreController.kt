@@ -249,7 +249,8 @@ open class ApiCoreController : InitializingBean, ApplicationContextAware {
         } else {
             val userAgent: UserAgent = UserAgent.parseUserAgentString(agentString)
             return ClientInfo(ip = ip, system = userAgent.operatingSystem.getName(),
-                    browserName = userAgent.browser.getName(), browserVersion = userAgent.browserVersion.version)
+                    browserName = if (userAgent.browser != null && userAgent.browser.getName() != null) userAgent.browser.getName() else "",
+                    browserVersion = if (userAgent.browserVersion != null && userAgent.browserVersion.version != null) userAgent.browserVersion.version else "")
         }
     }
 
